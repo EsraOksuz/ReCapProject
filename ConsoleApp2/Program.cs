@@ -27,10 +27,17 @@ namespace ConsoleApp2
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-
-            foreach (var c in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success==true)
             {
-                Console.WriteLine(c.CarId + "---" + c.CarName + "---" + c.BrandName + "---" + c.ColorName + "---" + c.DailyPrice);
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + "---" + c.CarName + "---" + c.BrandName + "---" + c.ColorName + "---" + c.DailyPrice);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
     }

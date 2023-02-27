@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "DataAccess": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\esra_\\OneDrive\\Masaüstü\\Yeni klasör (2)",
+      "nativeDebugging": false
+    }
+  }
+}

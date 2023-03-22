@@ -1,8 +1,14 @@
 ﻿using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 
 namespace ConsoleApp2
 {
@@ -10,9 +16,20 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            CarTest(); 
+            //CarTest();
             //ColorTest();
-            Console.ReadLine();
+            CarManager cm = new CarManager(new EfCarDal());
+            CarContext cars = new CarContext();
+            List<Car> carrs= cars.Cars.Where(p=>p.ColorId ==2).ToList();
+            foreach (var color in carrs)
+            {
+                Console.WriteLine(color.CarId);
+            }
+
+            IDataResult<List<Car>> cr = (IDataResult<List<Car>>)cm.GetCarsByColorId(2);
+            Console.WriteLine(cr);
+            Console.ReadLine();           
+            
         }
 
         private static void ColorTest()
